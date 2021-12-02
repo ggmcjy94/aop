@@ -12,13 +12,22 @@ class AopApplicationTests {
 
 	@Test
 	void contextLoads() {
-		List<String> list = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			list.add(UUID.randomUUID().toString());
-		}
-		for (String s : list) {
-			System.out.println("s = " + s);
+		A a = new A();
+		a.run();
+	}
+
+	static class A extends B{
+		@Override
+		public void onCreate() {
+			System.out.println("hello");
 		}
 	}
 
+	static abstract class B {
+		public abstract void onCreate();
+		public void run() {
+			onCreate();
+		}
+
+	}
 }
